@@ -1,69 +1,69 @@
 'use strict';
 
-var ravencore = module.exports;
+var cryptorescuecore = module.exports;
 
 // module information
-ravencore.version = 'v' + require('./package.json').version;
-ravencore.versionGuard = function(version) {
+cryptorescuecore.version = 'v' + require('./package.json').version;
+cryptorescuecore.versionGuard = function(version) {
   if (version !== undefined) {
-    var message = 'More than one instance of ravencore-lib found. ' +
-      'Please make sure to require ravencore-lib and check that submodules do' +
-      ' not also include their own ravencore-lib dependency.';
+    var message = 'More than one instance of cryptorescuecore-lib found. ' +
+      'Please make sure to require cryptorescuecore-lib and check that submodules do' +
+      ' not also include their own cryptorescuecore-lib dependency.';
     throw new Error(message);
   }
 };
-ravencore.versionGuard(global._ravencore);
-global._ravencore = ravencore.version;
+cryptorescuecore.versionGuard(global._cryptorescuecore);
+global._cryptorescuecore = cryptorescuecore.version;
 
 // crypto
-ravencore.crypto = {};
-ravencore.crypto.BN = require('./lib/crypto/bn');
-ravencore.crypto.ECDSA = require('./lib/crypto/ecdsa');
-ravencore.crypto.Hash = require('./lib/crypto/hash');
-ravencore.crypto.Random = require('./lib/crypto/random');
-ravencore.crypto.Point = require('./lib/crypto/point');
-ravencore.crypto.Signature = require('./lib/crypto/signature');
+cryptorescuecore.crypto = {};
+cryptorescuecore.crypto.BN = require('./lib/crypto/bn');
+cryptorescuecore.crypto.ECDSA = require('./lib/crypto/ecdsa');
+cryptorescuecore.crypto.Hash = require('./lib/crypto/hash');
+cryptorescuecore.crypto.Random = require('./lib/crypto/random');
+cryptorescuecore.crypto.Point = require('./lib/crypto/point');
+cryptorescuecore.crypto.Signature = require('./lib/crypto/signature');
 
 // encoding
-ravencore.encoding = {};
-ravencore.encoding.Base58 = require('./lib/encoding/base58');
-ravencore.encoding.Base58Check = require('./lib/encoding/base58check');
-ravencore.encoding.BufferReader = require('./lib/encoding/bufferreader');
-ravencore.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
-ravencore.encoding.Varint = require('./lib/encoding/varint');
+cryptorescuecore.encoding = {};
+cryptorescuecore.encoding.Base58 = require('./lib/encoding/base58');
+cryptorescuecore.encoding.Base58Check = require('./lib/encoding/base58check');
+cryptorescuecore.encoding.BufferReader = require('./lib/encoding/bufferreader');
+cryptorescuecore.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
+cryptorescuecore.encoding.Varint = require('./lib/encoding/varint');
 
 // utilities
-ravencore.util = {};
-ravencore.util.buffer = require('./lib/util/buffer');
-ravencore.util.js = require('./lib/util/js');
-ravencore.util.preconditions = require('./lib/util/preconditions');
+cryptorescuecore.util = {};
+cryptorescuecore.util.buffer = require('./lib/util/buffer');
+cryptorescuecore.util.js = require('./lib/util/js');
+cryptorescuecore.util.preconditions = require('./lib/util/preconditions');
 
 // errors thrown by the library
-ravencore.errors = require('./lib/errors');
+cryptorescuecore.errors = require('./lib/errors');
 
-// main ravencoin library
-ravencore.Address = require('./lib/address');
-ravencore.Block = require('./lib/block');
-ravencore.MerkleBlock = require('./lib/block/merkleblock');
-ravencore.BlockHeader = require('./lib/block/blockheader');
-ravencore.HDPrivateKey = require('./lib/hdprivatekey.js');
-ravencore.HDPublicKey = require('./lib/hdpublickey.js');
-ravencore.Networks = require('./lib/networks');
-ravencore.Opcode = require('./lib/opcode');
-ravencore.PrivateKey = require('./lib/privatekey');
-ravencore.PublicKey = require('./lib/publickey');
-ravencore.Script = require('./lib/script');
-ravencore.Transaction = require('./lib/transaction');
-ravencore.URI = require('./lib/uri');
-ravencore.Unit = require('./lib/unit');
+// main cryptorescue library
+cryptorescuecore.Address = require('./lib/address');
+cryptorescuecore.Block = require('./lib/block');
+cryptorescuecore.MerkleBlock = require('./lib/block/merkleblock');
+cryptorescuecore.BlockHeader = require('./lib/block/blockheader');
+cryptorescuecore.HDPrivateKey = require('./lib/hdprivatekey.js');
+cryptorescuecore.HDPublicKey = require('./lib/hdpublickey.js');
+cryptorescuecore.Networks = require('./lib/networks');
+cryptorescuecore.Opcode = require('./lib/opcode');
+cryptorescuecore.PrivateKey = require('./lib/privatekey');
+cryptorescuecore.PublicKey = require('./lib/publickey');
+cryptorescuecore.Script = require('./lib/script');
+cryptorescuecore.Transaction = require('./lib/transaction');
+cryptorescuecore.URI = require('./lib/uri');
+cryptorescuecore.Unit = require('./lib/unit');
 
 // dependencies, subject to change
-ravencore.deps = {};
-ravencore.deps.bnjs = require('bn.js');
-ravencore.deps.bs58 = require('bs58');
-ravencore.deps.Buffer = Buffer;
-ravencore.deps.elliptic = require('elliptic');
-ravencore.deps._ = require('lodash');
+cryptorescuecore.deps = {};
+cryptorescuecore.deps.bnjs = require('bn.js');
+cryptorescuecore.deps.bs58 = require('bs58');
+cryptorescuecore.deps.Buffer = Buffer;
+cryptorescuecore.deps.elliptic = require('elliptic');
+cryptorescuecore.deps._ = require('lodash');
 
 // Internal usage, exposed for testing/advanced tweaking
-ravencore.Transaction.sighash = require('./lib/transaction/sighash');
+cryptorescuecore.Transaction.sighash = require('./lib/transaction/sighash');

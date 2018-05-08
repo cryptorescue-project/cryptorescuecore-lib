@@ -6,20 +6,20 @@ var chai = require('chai');
 var should = chai.should();
 var expect = chai.expect;
 
-var ravencore = require('..');
-var PublicKey = ravencore.PublicKey;
-var Address = ravencore.Address;
-var Script = ravencore.Script;
-var Networks = ravencore.Networks;
+var cryptorescuecore = require('..');
+var PublicKey = cryptorescuecore.PublicKey;
+var Address = cryptorescuecore.Address;
+var Script = cryptorescuecore.Script;
+var Networks = cryptorescuecore.Networks;
 
-var validbase58 = require('./data/ravend/base58_keys_valid.json');
-var invalidbase58 = require('./data/ravend/base58_keys_invalid.json');
+var validbase58 = require('./data/cryptorescued/base58_keys_valid.json');
+var invalidbase58 = require('./data/cryptorescued/base58_keys_invalid.json');
 
 describe('Address', function() {
 
   var pubkeyhash = new Buffer('3c3fa3d4adcaf8f52d5b1843975e122548269937', 'hex');
   var buf = Buffer.concat([new Buffer([0]), pubkeyhash]);
-  var str = 'REmkropiJmep2g1UiTFs3P1S86b6ECosP9';
+  var str = 'CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU';
 
   it('can\'t build without data', function() {
     (function() {
@@ -39,7 +39,7 @@ describe('Address', function() {
     }).should.throw('Third argument must be "pubkeyhash" or "scripthash"');
   });
 
-  describe('ravend compliance', function() {
+  describe('cryptorescued compliance', function() {
     validbase58.map(function(d) {
       if (!d[2].isPrivkey) {
         it('should describe address ' + d[0] + ' as valid', function() {
@@ -68,11 +68,7 @@ describe('Address', function() {
 
   // livenet valid
   var PKHLivenet = [
-    'RGRsG7UQc3AmvdrhPDngpPjvTNhJQFeHYj',
-    'RJTVhMXftWzoWkkR8fYcpyESXRdr8PrChr',
-    'RAGNXSoF8qeX7hNzJaFt6Ezgph676pyDEH',
-    'RCYpuuGK6j9z8UJgc3NBr7ETv4zoCHMjjp',
-    '    RCYpuuGK6j9z8UJgc3NBr7ETv4zoCHMjjp   \t\n'
+    'CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU'
   ];
 
   // livenet p2sh
@@ -214,10 +210,10 @@ describe('Address', function() {
     });
 
     it('addresses with whitespace are validated correctly', function() {
-      var ws = '  \r \t    \n RJTVhMXftWzoWkkR8fYcpyESXRdr8PrChr\t \n            \r';
+      var ws = '  \r \t    \n CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU\t \n            \r';
       var error = Address.getValidationError(ws);
       should.not.exist(error);
-      Address.fromString(ws).toString().should.equal('RJTVhMXftWzoWkkR8fYcpyESXRdr8PrChr');
+      Address.fromString(ws).toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
     });
   });
 
@@ -253,7 +249,7 @@ describe('Address', function() {
     it('should error because of unrecognized data format', function() {
       (function() {
         return new Address(new Error());
-      }).should.throw(ravencore.errors.InvalidArgument);
+      }).should.throw(cryptorescuecore.errors.InvalidArgument);
     });
 
     it('should error because of incorrect format for pubkey hash', function() {
@@ -332,7 +328,7 @@ describe('Address', function() {
     it('should make this address from a compressed pubkey', function() {
       var pubkey = new PublicKey('0285e9737a74c30a873f74df05124f2aa6f53042c2fc0a130d6cbd7d16b944b004');
       var address = Address.fromPublicKey(pubkey, 'livenet');
-      address.toString().should.equal('RHxUARb88v1tvu7fZGNzeuomQFvDbmD6eU');
+      address.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
     });
 
     it('should use the default network for pubkey', function() {
@@ -345,9 +341,9 @@ describe('Address', function() {
       var pubkey = new PublicKey('0485e9737a74c30a873f74df05124f2aa6f53042c2fc0a130d6cbd7d16b944b00' +
         '4833fef26c8be4c4823754869ff4e46755b85d851077771c220e2610496a29d98');
       var a = Address.fromPublicKey(pubkey, 'livenet');
-      a.toString().should.equal('REaisDr1uJWXjzKGSGGBxmxAcxLjTWGDGf');
+      a.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
       var b = new Address(pubkey, 'livenet', 'pubkeyhash');
-      b.toString().should.equal('REaisDr1uJWXjzKGSGGBxmxAcxLjTWGDGf');
+      b.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
     });
 
     it('should classify from a custom network', function() {
@@ -382,9 +378,9 @@ describe('Address', function() {
           '0xc8e11b0eb0d2ad5362d894f048908341fa61b6e1 OP_EQUALVERIFY OP_CHECKSIG');
         var buf = s.toBuffer();
         var a = Address.fromScript(s, 'livenet');
-        a.toString().should.equal('RTbLtVwsr6wB5tTYEtfpP78dzYQe1nnv2k');
+        a.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
         var b = new Address(s, 'livenet');
-        b.toString().should.equal('RTbLtVwsr6wB5tTYEtfpP78dzYQe1nnv2k');
+        b.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
       });
 
       it('should make this address from a p2sh input script', function() {
@@ -396,7 +392,7 @@ describe('Address', function() {
       });
 
       it('returns the same address if the script is a pay to public key hash out', function() {
-        var address = 'REaisDr1uJWXjzKGSGGBxmxAcxLjTWGDGf';
+        var address = 'CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU';
         var script = Script.buildPublicKeyHashOut(new Address(address));
         Address(script, Networks.livenet).toString().should.equal(address);
       });
@@ -438,7 +434,7 @@ describe('Address', function() {
 
   describe('#toBuffer', function() {
 
-    it('3c3fa3d4adcaf8f52d5b1843975e122548269937 corresponds to hash REmkropiJmep2g1UiTFs3P1S86b6ECosP9', function() {
+    it('3c3fa3d4adcaf8f52d5b1843975e122548269937 corresponds to hash CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU', function() {
       var address = new Address(str);
       address.toBuffer().slice(1).toString('hex').should.equal(pubkeyhash.toString('hex'));
     });
@@ -456,7 +452,7 @@ describe('Address', function() {
     it('will fail with invalid state', function() {
       expect(function() {
         return Address.fromObject('¹');
-      }).to.throw(ravencore.errors.InvalidState);
+      }).to.throw(cryptorescuecore.errors.InvalidState);
     });
   });
 
@@ -487,7 +483,7 @@ describe('Address', function() {
   describe('#inspect', function() {
     it('should output formatted output correctly', function() {
       var address = new Address(str);
-      var output = '<Address: REmkropiJmep2g1UiTFs3P1S86b6ECosP9, type: pubkeyhash, network: livenet>';
+      var output = '<Address: CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU, type: pubkeyhash, network: livenet>';
       address.inspect().should.equal(output);
     });
   });

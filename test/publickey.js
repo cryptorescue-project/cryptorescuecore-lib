@@ -3,13 +3,13 @@
 var should = require('chai').should();
 var expect = require('chai').expect;
 
-var ravencore = require('..');
-var Point = ravencore.crypto.Point;
-var BN = ravencore.crypto.BN;
-var PublicKey = ravencore.PublicKey;
-var PrivateKey = ravencore.PrivateKey;
-var Address = ravencore.Address;
-var Networks = ravencore.Networks;
+var cryptorescuecore = require('..');
+var Point = cryptorescuecore.crypto.Point;
+var BN = cryptorescuecore.crypto.BN;
+var PublicKey = cryptorescuecore.PublicKey;
+var PrivateKey = cryptorescuecore.PrivateKey;
+var Address = cryptorescuecore.Address;
+var Networks = cryptorescuecore.Networks;
 
 /* jshint maxlen: 200 */
 
@@ -337,7 +337,7 @@ describe('PublicKey', function() {
     it('should output this known mainnet address correctly', function() {
       var pk = new PublicKey('03c87bd0e162f26969da8509cafcb7b8c8d202af30b928c582e263dd13ee9a9781');
       var address = pk.toAddress('livenet');
-      address.toString().should.equal('RJP6xXmoPJdaWEmXq241yk2DqD5C1BPCW7');
+      address.toString().should.equal('CYWfkpw6GJEuBDHUMKGmDBkaTUTXpQTwRU');
     });
 
     it('should output this known testnet address correctly', function() {

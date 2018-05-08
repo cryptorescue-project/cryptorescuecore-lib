@@ -1,5 +1,5 @@
 {
-  "name": "ravencore",
+  "name": "cryptorescuecore",
   "version": "0.1.0",
   "dependencies": {
     "bn.js": {

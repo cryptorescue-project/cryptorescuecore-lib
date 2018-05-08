@@ -2,10 +2,10 @@
 
 var should = require('chai').should();
 
-var ravencore = require('../..');
-var errors = ravencore.errors;
-var $ = ravencore.util.preconditions;
-var PrivateKey = ravencore.PrivateKey;
+var cryptorescuecore = require('../..');
+var errors = cryptorescuecore.errors;
+var $ = cryptorescuecore.util.preconditions;
+var PrivateKey = cryptorescuecore.PrivateKey;
 
 describe('preconditions', function() {
 

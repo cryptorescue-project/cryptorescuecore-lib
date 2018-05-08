@@ -2,8 +2,8 @@
 
 var expect = require('chai').expect;
 var should = require('chai').should();
-var ravencore = require('..');
-var networks = ravencore.Networks;
+var cryptorescuecore = require('..');
+var networks = cryptorescuecore.Networks;
 
 describe('Networks', function() {
 
@@ -18,16 +18,15 @@ describe('Networks', function() {
   it('will enable/disable regtest Network', function() {
     networks.enableRegtest();
     networks.testnet.networkMagic.should.deep.equal(new Buffer('43524f57', 'hex'));
-    networks.testnet.port.should.equal(18767);
+    networks.testnet.port.should.equal(18757);
     networks.testnet.dnsSeeds.should.deep.equal([]);
     networks.testnet.regtestEnabled.should.equal(true);
 
     networks.disableRegtest();
-    networks.testnet.networkMagic.should.deep.equal(new Buffer('52564e54', 'hex'));
+    networks.testnet.networkMagic.should.deep.equal(new Buffer('18242018', 'hex'));
     networks.testnet.port.should.equal(18333);
     networks.testnet.dnsSeeds.should.deep.equal([
-      'seed-testnet-raven.ravencoin.org',
-      'seed-testnet-raven.bitactivate.com'
+      'dnsseed.cryptorescue.org'
     ]);
   });
 
